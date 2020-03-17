@@ -1,0 +1,1 @@
+{"version":3,"file":"1.js","sources":["webpack:///./src/click.js"],"sourcesContent":["function handleClick() {\n\tconst element = document.createElement('div');\n\telement.innerHTML = 'Dell Lee';\n\tdocument.body.appendChild(element);\n}\n\nexport default handleClick;"],"mappings":"AAAA","sourceRoot":""}

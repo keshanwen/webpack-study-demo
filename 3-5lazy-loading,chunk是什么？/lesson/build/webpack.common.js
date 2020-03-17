@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
- 
+
 module.exports = {
 	entry: {
 		main: './src/index.js'
@@ -47,7 +47,7 @@ module.exports = {
 				'postcss-loader'
 			]
 		}]
-	}, 
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: 'src/index.html'
@@ -57,10 +57,10 @@ module.exports = {
 		})
 	],
 	optimization: {
-		// 代码分割
+		// splitChunk有默认项 
 		splitChunks: {
-			chunks: 'all'
-		}
+      chunks: 'all'
+    }
 	},
 	output: {
 		filename: '[name].js',

@@ -1,10 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
- 
+
 module.exports = {
 	entry: {
-		main: './src/index.js'
+		main: './src/index.js',
 	},
 	module: {
 		rules: [{ 
@@ -26,28 +26,8 @@ module.exports = {
 			use: {
 				loader: 'file-loader'
 			} 
-		}, {
-			test: /\.scss$/,
-			use: [
-				'style-loader', 
-				{
-					loader: 'css-loader',
-					options: {
-						importLoaders: 2
-					}
-				},
-				'sass-loader',
-				'postcss-loader'
-			]
-		}, {
-			test: /\.css$/,
-			use: [
-				'style-loader',
-				'css-loader',
-				'postcss-loader'
-			]
 		}]
-	}, 
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: 'src/index.html'
@@ -57,13 +37,16 @@ module.exports = {
 		})
 	],
 	optimization: {
-		// 代码分割
+		// treec-shaking（对于引用了,但是没有直接显示调用的文件，将会不打包。如果要排除一些文件执行此操作
+		// 要在package.json中去设置sideeffect）
+		usedExports: true,
 		splitChunks: {
-			chunks: 'all'
-		}
+      chunks: 'all'
+    }
 	},
 	output: {
 		filename: '[name].js',
+		chunkFilename: '[name].chunk.js',
 		path: path.resolve(__dirname, '../dist')
 	}
 }

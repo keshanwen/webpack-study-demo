@@ -1,16 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
- 
+
 module.exports = {
 	entry: {
-		main: './src/index.js'
+		main: './src/index.js',
 	},
 	module: {
 		rules: [{ 
 			test: /\.js$/, 
-			exclude: /node_modules/, 
-			loader: 'babel-loader',
+			exclude: /node_modules/,
+			use: [{
+				loader: 'babel-loader'
+			}]
 		}, {
 			test: /\.(jpg|png|gif)$/,
 			use: {
@@ -26,28 +28,8 @@ module.exports = {
 			use: {
 				loader: 'file-loader'
 			} 
-		}, {
-			test: /\.scss$/,
-			use: [
-				'style-loader', 
-				{
-					loader: 'css-loader',
-					options: {
-						importLoaders: 2
-					}
-				},
-				'sass-loader',
-				'postcss-loader'
-			]
-		}, {
-			test: /\.css$/,
-			use: [
-				'style-loader',
-				'css-loader',
-				'postcss-loader'
-			]
 		}]
-	}, 
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: 'src/index.html'
@@ -57,13 +39,23 @@ module.exports = {
 		})
 	],
 	optimization: {
-		// 代码分割
+		runtimeChunk: {
+			name: 'runtime'
+		},
+		usedExports: true,
 		splitChunks: {
-			chunks: 'all'
-		}
+      chunks: 'all',
+      cacheGroups: {
+      	vendors: {
+      		test: /[\\/]node_modules[\\/]/,
+      		priority: -10,
+      		name: 'vendors',
+      	}
+      }
+    }
 	},
+	performance: false,
 	output: {
-		filename: '[name].js',
 		path: path.resolve(__dirname, '../dist')
 	}
 }
