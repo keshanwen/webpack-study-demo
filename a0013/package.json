@@ -1,0 +1,32 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    //  cross-env 插件将 NODE_ENV=development AAA=AAA 变量放到node的process.env 属性中，通过process.env.NODE_ENV 方式获取后面的值
+    // 注意该值在浏览器环境中获取不到
+    "dev": "cross-env NODE_ENV=development AAA=AAA webpack serve --config ./config/webpack.config.js",
+    "build:test": "cross-env NODE_ENV=test  webpack --config ./config/webpack.config.js",
+    "build:pro": "cross-env NODE_ENV=production  webpack --config ./config/webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "html-webpack-plugin": "^5.1.0",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
