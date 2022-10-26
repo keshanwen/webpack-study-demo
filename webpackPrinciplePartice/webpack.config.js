@@ -26,6 +26,14 @@ module.exports = {
           'css-loader'
         ]
 
+      },
+
+      {
+        test: /\.md$/,
+        use: [
+          'html-loader',
+          './markdown-loader.js'
+        ]
       }
 
     ]
