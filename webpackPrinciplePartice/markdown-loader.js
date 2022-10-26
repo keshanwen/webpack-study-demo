@@ -1,6 +1,6 @@
 // ./markdown-loader.js
 
-const marked = require('marked')
+const { marked } = require('marked')
 
 /*
 
@@ -8,7 +8,7 @@ module.exports = source => {
 
   // 1. 将 markdown 转换为 html 字符串
 
-  const html = marked.marked(source)
+  const html = marked(source)
 
   // html => '<h1>About</h1><p>this is a markdown file.</p>'
 
@@ -31,7 +31,7 @@ module.exports = source => {
 
   // 1. 将 markdown 转换为 html 字符串
 
-  const html = marked.marked(source)
+  const html = marked(source)
 
   return html
 
