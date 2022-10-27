@@ -1,14 +1,12 @@
 // ./src/index.js
 
-// import createHeading from './heading.js'
+import createHeading from './heading.js'
 
-// const heading = createHeading()
+const heading = createHeading()
 
-// document.body.append(heading)
-// import './main.css'
-// import about from './about.md'
-
-
+document.body.append(heading)
+import './main.css'
+import about from './about.md'
 
 // console.log(about)
 

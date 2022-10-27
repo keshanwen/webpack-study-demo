@@ -2,6 +2,7 @@
 
 export default () => {
 
+    console.log('hello wrold')
     const element = document.createElement('h2')
   
     element.textContent = 'Hello webpack'
