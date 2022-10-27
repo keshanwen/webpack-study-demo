@@ -9,6 +9,8 @@ module.exports = {
 
   mode: 'none',
 
+  devtool: 'eval', // source map 设置
+
   entry: './src/main.js',
 
   output: {
