@@ -1,4 +1,5 @@
 // ./webpack.config.js
+const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -56,12 +57,16 @@ module.exports = {
     // new CopyWebpackPlugin({
     //   patterns: ['public'] // 需要拷贝的目录或者路径通配符
     // }),
-    new RemoveCommentsPlugin()
+    new RemoveCommentsPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
 
   devServer: {
     // contentBase: path.join(__dirname, "dist"),
     // static: path.join(__dirname, "public"),
+    hot: true,
+    // 只使用 HMR，不会 fallback 到 live reloading
+    // hotOnly: true
     port: 9000,
   }
 
