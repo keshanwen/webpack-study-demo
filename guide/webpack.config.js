@@ -5,6 +5,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
 
+    devtool: 'inline-source-map',
+
     entry: {
         app: './src/index.js',
         print: './src/print.js'
@@ -20,6 +22,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Output Management'
         }),
-    ]
+    ],
+
+    devServer: {
+       static: './dist'
+    },
 
 }
