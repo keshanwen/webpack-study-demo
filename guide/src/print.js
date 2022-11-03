@@ -1,4 +1,5 @@
-export default function printMe() {
-   // console.log(' i get called from print.js~~~~')
-   console.log('i am edit print.js !!!!')
+console.log('The print.js module has loaded! See the network tab in dev tools...');
+
+export default () => {
+  console.log('Button Clicked: Here\'s "some text"!');
 }

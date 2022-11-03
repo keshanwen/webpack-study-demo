@@ -1,26 +1,24 @@
-async function getComponent() {
+ import _ from 'lodash';
 
-    //  return import(/* webpackChunkName: "lodash" */ 'lodash').then( ( {default: _} )=> {
-    //   console.log(_)
-    //   var element = document.createElement('div');
+
+ function component() {
+    var element = document.createElement('div');
+    var button = document.createElement('button');
+    var br = document.createElement('br');
+    button.innerHTML = 'Click me and look at the console!';
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.appendChild(br);
+    element.appendChild(button);
+
   
-    //    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
-    //    return element;
-  
-    //  }).catch(error => 'An error occurred while loading the component');
+    button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+      var print = module.default;
 
-    let element = document.createElement('div');
+      print();
+    });
 
-    const { default: _ } = await import('loadsh')
+    return element;
+  }
 
-    element.innerHTML =  _.join(['Hello', 'webpack'], ' ');
 
-    return element
-
-}
-
-getComponent().then(component => {
-  console.log(component)
- document.body.appendChild(component);
-})
+ document.body.appendChild(component());
