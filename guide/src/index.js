@@ -1,38 +1,26 @@
-const _ = require('loadsh')
-import printMe from './print.js';
-// import './styles.css'
-import { cube } from './math.js';
+async function getComponent() {
 
-console.log(process.env.NODE_ENV,'process.env.NODE_ENV~~~~~~~~~~~~~~~~~')
-if (process.env.NODE_ENV !== 'production') {
-   console.log('Looks like we are in development mode!'); 
+    //  return import(/* webpackChunkName: "lodash" */ 'lodash').then( ( {default: _} )=> {
+    //   console.log(_)
+    //   var element = document.createElement('div');
+  
+    //    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  
+    //    return element;
+  
+    //  }).catch(error => 'An error occurred while loading the component');
+
+    let element = document.createElement('div');
+
+    const { default: _ } = await import('loadsh')
+
+    element.innerHTML =  _.join(['Hello', 'webpack'], ' ');
+
+    return element
+
 }
 
-
-function component() {
-    var element = document.createElement('div');
-    var btn = document.createElement('button');
-  
-    // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-    // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.innerHTML = cube(5)
-
-    btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
-  
-    element.appendChild(btn);
-    
-    return element;
-  }
-  
-  let element = component(); // 当 print.js 改变导致页面重新渲染时，重新获取渲染的元素
-  document.body.appendChild(element);
-
-  if (module.hot) {
-    module.hot.accept('./print.js', function() {
-      console.log('Accepting the updated printMe module!');
-      document.body.removeChild(element);
-      element = component(); // 重新渲染页面后，component 更新 click 事件处理
-      document.body.appendChild(element);
-    })
-  }
+getComponent().then(component => {
+  console.log(component)
+ document.body.appendChild(component);
+})
