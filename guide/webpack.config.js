@@ -9,13 +9,13 @@ module.exports = {
     devtool: 'inline-source-map',
 
     entry: {
-        app: './src/index.js',
+        index: './src/index.js',
+        another: './src/another-module.js'
     },
     
     output: {
-       filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist')
     },
 
     module: {
@@ -30,9 +30,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            title: 'Code Splitting'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
     ],
 
      optimization: {
