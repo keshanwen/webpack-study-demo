@@ -1,7 +1,12 @@
 const _ = require('loadsh')
 import printMe from './print.js';
-import './styles.css'
+// import './styles.css'
 import { cube } from './math.js';
+
+console.log(process.env.NODE_ENV,'process.env.NODE_ENV~~~~~~~~~~~~~~~~~')
+if (process.env.NODE_ENV !== 'production') {
+   console.log('Looks like we are in development mode!'); 
+}
 
 
 function component() {
