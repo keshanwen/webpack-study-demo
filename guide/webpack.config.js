@@ -1,19 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { env } = require('process');
 
-module.exports = env => {
+console.log(process.env.NAME_W, 'env')
 
-    console.log('NODE_ENV: ', env) // 'local'
-    console.log('Production: ', env) // true
+module.exports = {
 
-  return {
     mode: 'none', 
 
     devtool: 'inline-source-map',
   
-    entry: './src/index.ts',
+    entry: './src/index.js',
   
     module: {
       rules: [
@@ -40,5 +37,4 @@ module.exports = env => {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist')
     }
-  }
 };
