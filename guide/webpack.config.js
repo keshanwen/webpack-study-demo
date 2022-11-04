@@ -36,6 +36,10 @@ module.exports = {
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'manifest'
         // })
+        new webpack.ProvidePlugin({
+            // _: 'lodash'
+            join: ['lodash', 'join']
+        })
     ],
 
      optimization: {
