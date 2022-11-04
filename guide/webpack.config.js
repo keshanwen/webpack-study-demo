@@ -1,67 +1,37 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+  mode: 'none', 
 
-    devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
 
-    entry: {
-        polyfills: './src/polyfills.js',
-        index: './src/index.js'
-    },
-    
-    output: {
-        filename: '[name].[chunkhash].js',
-       // chunkFilename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
+  entry: './src/index.ts',
 
-    module: {
-        rules: [
-                {
-                    test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
-                }
-            ]
-    },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
 
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'Caching'
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: 'manifest'
-        // })
-        new webpack.ProvidePlugin({
-            // _: 'lodash'
-            join: ['lodash', 'join']
-        }),
-        new WorkboxPlugin.GenerateSW({
-            // 这些选项帮助 ServiceWorkers 快速启用
-            // 不允许遗留任何“旧的” ServiceWorkers
-            clientsClaim: true,
-            skipWaiting: true
-        })
-    ],
+  plugins: [
+    new HtmlWebpackPlugin({
+        title: 'Output Management'
+    }),
+    new CleanWebpackPlugin()
+  ],
 
-     optimization: {
-        // 模块只导出被使用的成员
-        usedExports: true,
-        // 压缩输出结果
-        minimize: true,
-        // 尽可能合并每一个模块到一个函数中
-        concatenateModules: true,
-    },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
 
-    devServer: {
-       static: './dist',
-       hot: true
-    },
-
-}
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};
