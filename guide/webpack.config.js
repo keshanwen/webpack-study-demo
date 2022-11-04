@@ -9,7 +9,8 @@ module.exports = {
     devtool: 'inline-source-map',
 
     entry: {
-        index: './src/index.js',
+        polyfills: './src/polyfills.js',
+        index: './src/index.js'
     },
     
     output: {

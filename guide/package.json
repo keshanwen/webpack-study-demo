@@ -24,6 +24,8 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "loadsh": "^0.0.4"
+    "babel-polyfill": "^6.26.0",
+    "loadsh": "^0.0.4",
+    "whatwg-fetch": "^3.6.2"
   }
 }
