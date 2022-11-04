@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-转换AST</title>
+</head>
+<body>
+<!--
+1.AST有什么用?
+1.1在大多数情况下我们是用不到AST的, 但是如果你需要做一些大型框架或者第三方工具的时候,
+那么AST将是你的不二选择. 例如家喻户晓的babel、webpack、JD Taro、uni-app等第三方工具和框架都把AST用的淋漓尽致
+1.2在利用webpack打包js代码的时候, webpack会在我们原有代码的基础新增一些代码
+   在利用babel打包js代码的时候, 我们可以将高级代码转换为低级代码
+   那么webpack、babel是如何新增代码, 如何修改的呢, 答案就是通过AST来新增和修改的
+所以如果你不甘于做一只菜鸟, 你想进一步深入学习各种工具、框架的底层实现原理, 那么AST都是必修之课
+
+2.如何将我们的代码转换成AST?
+将JS代码转换成AST, 其实就是将源代码的每一个组成部分拆解出来放到树中
+拆解的过程非常复杂, 所以我们可以借助第三方模块来帮我们实现拆解
+利用@babel/parser解析器: npm install --save @babel/parser
+https://babeljs.io/docs/en/babel-parser
+
+注意点: 最新版本babylon已经更名为@babel/parser
+-->
+</body>
+</html>

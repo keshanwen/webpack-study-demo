@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-webpack打包内容分析</title>
+</head>
+<body>
+<!--
+1.webpack打包内容分析
+1.通过我们的观察, 发现webpack打包之后的内容被放到了一个自调用函数中
+2.会将入口文件的路径作为key,入口文件的内容作为value放到一个对象中传递给自调用函数
+3.在自调用函数中实现了require方法, 并且调用了自己实现的require方法
+4.在调用自己实现的require时间入口文件路径作为key传递进去, 在内容通过这个路径取出对应的函数执行
+-->
+</body>
+</html>

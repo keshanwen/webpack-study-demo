@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-AST开篇</title>
+</head>
+<body>
+<!--
+1.什么是AST?
+AST是Abstract Syntax Tree的缩写既"抽象语法树"
+它以树状的形式表现编程语言的语法结构
+
+在线生成: https://astexplorer.net/
+推荐阅读: https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md
+
+生成过程: 1.源码--2.词法分析--3.语法分析--4.抽象语法树
+例如:
+1.源码: let sum = 10 + 66;
+2.词法分析:
+ 从左到右一个字符一个字符地读入源程序，从中识别出一个个“单词”"符号"等
+    单词      单词   符号     数字        符号      数字      符号
+ |  let  |    sum   |  =  |    10     |     +    |   66   |     ;   |
+
+ [
+ {"type": "word", value: "let"}
+ {"type": "word", value: "sum"}
+ {"type": "Punctuator", value: "="}
+ {"type": "Numeric", value: "10"}
+ {"type": "Punctuator", value: "+"}
+ {"type": "Numeric", value: "66""}
+ {"type": "Punctuator", value: ";"}
+ ]
+
+3.语法分析:
+在词法分析的基础上根据当前编程语言的语法,将单词序列组合成各类语法短语
+   关键字    标识符    赋值运算符      字面量     二元运算符   字面量   结束符号
+ |  let  |    sum   |       =      |     10     |      +     |   66   |     ;   |
+ [{
+    "type": "VariableDeclaration",
+    "content": {
+        {"type": "kind", value: "let"} // kind 表示是什么类型的声明
+        {"type": "Identifier", value: "sum"} // Identifier 表示是标识符
+        {"type": "init", value: "="} // init 表示初始值的表达式
+        {"type": "Literal", value: "10"} // Literal 表示是一个字面量
+        {"type": "operator", value: "+"} // operator 表示是一个二元运算符
+        {"type": "Literal", value: "66""}
+        {"type": "Punctuator", value: ";"}
+     }
+ }]
+
+4.生成抽象语法树
+推荐阅读常见节点类型: https://github.com/babel/babylon/blob/master/ast/spec.md
+-->
+
+<script>
+    let sum = 10 + 66;
+    let tree = {
+        "type": "Program",
+        "start": 0,
+        "end": 18,
+        "body": [
+            {
+                "type": "VariableDeclaration",
+                "kind": "let",
+                "start": 0,
+                "end": 18,
+                "declarations": [
+                    {
+                        "type": "VariableDeclarator",
+                        "start": 4,
+                        "end": 17,
+                        "id": {
+                            "type": "Identifier",
+                            "start": 4,
+                            "end": 7,
+                            "name": "sum"
+                        },
+                        "init": {
+                            "type": "BinaryExpression",
+                            "start": 10,
+                            "end": 17,
+                            "left": {
+                                "type": "Literal",
+                                "start": 10,
+                                "end": 12,
+                                "value": 10,
+                                "raw": "10"
+                            },
+                            "operator": "+",
+                            "right": {
+                                "type": "Literal",
+                                "start": 15,
+                                "end": 17,
+                                "value": 66,
+                                "raw": "66"
+                            }
+                        }
+                    }
+                ],
+            }
+        ]
+    };
+</script>
+</body>
+</html>

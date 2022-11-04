@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-创建AST节点</title>
+</head>
+<body>
+
+<!--
+1.如何手动创建AST抽象语法树
+可以通过babel的types模块来创建语法树节点然后push到body中
+https://babeljs.io/docs/en/babel-types
+
+2.创建技巧
+在@babel/types模块中, 所有语法树的节点类型都有对应的方法, 直接调用对应方法即可创建
+在创建的时候建议从内向外创建, 最后再添加到body中
+-->
+<script>
+    let tree = {
+        "type": "File",
+        "program": {
+            "type": "Program",
+            "body": [
+                {
+                    "type": "VariableDeclaration",
+                    "declarations": [
+                        {
+                            "type": "VariableDeclarator",
+                            "id": {
+                                "type": "Identifier",
+                                "name": "sum"
+                            },
+                            "init": {
+                                "type": "BinaryExpression",
+                                "left": {
+                                    "type": "NumericLiteral",
+                                    "value": 10
+                                },
+                                "operator": "+",
+                                "right": {
+                                    "type": "NumericLiteral",
+                                    "value": 66
+                                }
+                            }
+                        }
+                    ],
+                    "kind": "let"
+                }
+            ],
+        },
+    }
+</script>
+</body>
+</html>
