@@ -6,8 +6,8 @@
   "sideEffects": false,
   "scripts": {
     "start": "http-server dist",
-    "build": "webpack --config webpack.prod.js",
-    "dev": "webpack"
+    "server": "npx webpack-dev-server --env development",
+    "build": "npx webpack --env production"
   },
   "keywords": [],
   "author": "",
