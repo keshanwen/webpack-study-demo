@@ -1,8 +1,13 @@
-let age = 24
+var cache = {};
+
+function importAll (r) {
+  r.keys().forEach(key => cache[key] = r(key));
+}
+
+importAll(require.context('./components/', true, /\.js$/));
 
 
 
-console.log(age)
-
+console.log(cache)
 
 
