@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-简化Loader导入</title>
+</head>
+<body>
+<!--
+1.如何简化Loader的导入操作
+如果需要使用自己编写的Loader, 我们需要通过path指定loader的路径
+有没有办法可以像使用第三方loader一样, 只编写loader的名称呢?
+可以通过webpack的resolveLoader配置来简化
+resolveLoader:{
+    alias: {
+        ReplaceLoader : path.resolve(__dirname, "loader/ReplaceLoader.js")
+    }
+    // modules: [ 'node_modules', './loader'],
+},
+-->
+</body>
+</html>

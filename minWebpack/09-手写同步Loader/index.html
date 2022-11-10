@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-手写同步Loader</title>
+</head>
+<body>
+<!--
+1.如何自己实现一个Loader?
+https://www.webpackjs.com/api/loaders/
+Loader其实就是一个函数,
+我们只需要自定义一个模块, 在模块中暴露一个函数, 在函数中实现Loader相关的功能即可
+
+2.手写Loader注意点
+2.1虽然说Loader就是一个函数, 但是这个函数必须是一个普通函数, 不能是箭头函数
+   因为webpack在调用Loader的时候会修改这个函数中的this, 而如果是箭头函数webpack就不能修改了
+2.2webpack在调用Loader的时候会将打包文件的内容传递给实现Loader的函数,
+   我们拿到内容后就可以对内容进行操作, 然后再将操作后的内容返回回去即可
+-->
+</body>
+</html>
