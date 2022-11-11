@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18-Tapable-SyncBailHook</title>
+</head>
+<body>
+<!--
+1.什么是SyncHook同步串行钩子
+SyncHook不关心订阅函数(事件处理函数)的返回值，在收到消息(触发事件)之后，
+会按照订阅的先后顺序执行所有的订阅函数(事件处理函数)
+
+2.什么是SyncBailHook同步串行钩子
+SyncBailHook关心订阅函数(事件处理函数)的返回值，在收到消息(触发事件)之后，
+会按照订阅的先后顺序执行所有的事件处理函数
+但是如果在执行的过程中有一个订阅函数返回的不是undefined, 就会停止执行后续函数
+
+const {
+    SyncHook,
+    SyncBailHook,
+    SyncWaterfallHook,
+    SyncLoopHook,
+    AsyncParallelHook,
+    AsyncParallelBailHook,
+    AsyncSeriesHook,
+    AsyncSeriesBailHook,
+    AsyncSeriesWaterfallHook
+ } = require("tapable");
+-->
+</body>
+</html>

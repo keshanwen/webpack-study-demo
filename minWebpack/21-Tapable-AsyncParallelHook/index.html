@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21-Tapable-AsyncParallelHook</title>
+</head>
+<body>
+<!--
+1.什么是AsyncParallelHook异步并行钩子
+发出消息后，会同时执行所有的订阅函数
+并且在执行订阅函数时会自动传递一个callback参数,
+每个订阅函数执行完毕之后必须通过callback告诉系统订阅函数已经执行完毕了
+当所有订阅函数都调用完callback后会通过回调函数的方式告诉callAsync全部执行完毕了
+
+注意点:
+想要使用AsyncParallelHook, 注册事件时需要通过tapAsync注册, 触发事件时需要通过callAsync触发
+
+const {
+    SyncHook,
+    SyncBailHook,
+    SyncWaterfallHook,
+    SyncLoopHook,
+    AsyncParallelHook,
+    AsyncParallelBailHook,
+    AsyncSeriesHook,
+    AsyncSeriesBailHook,
+    AsyncSeriesWaterfallHook
+ } = require("tapable");
+-->
+</body>
+</html>
