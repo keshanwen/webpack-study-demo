@@ -13,7 +13,8 @@ hook.tapAsync('fn1', function (name, callback) {
 hook.tapAsync('fn2', function (name, callback) {
   setTimeout(() => {
     console.log('fn2--->', name)
-    callback('err')
+    // callback('err')
+   callback()
   }, 2000)
 })
 

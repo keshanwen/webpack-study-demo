@@ -60,3 +60,5 @@ hook.promise('foo').then(() => {
   console.timeEnd('time')
 })
 
+
+
