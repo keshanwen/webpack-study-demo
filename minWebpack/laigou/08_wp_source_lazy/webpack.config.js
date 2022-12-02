@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    filename: 'built.js',
+    filename: 'builts.js',
     path: path.resolve('dist')
   },
   plugins: [

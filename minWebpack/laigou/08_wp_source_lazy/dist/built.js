@@ -1,7 +1,7 @@
 (function (modules) { // webpackBootstrap
   // install a JSONP callback for chunk loading
   function webpackJsonpCallback(data) {
-    var chunkIds = data[0];
+    var chunkIds = data[0]; // 获取login.bulit.js push 方法中参数
     var moreModules = data[1];
     // add "moreModules" to the modules object,
     // then flag all "chunkIds" as loaded and fire callback
@@ -11,17 +11,17 @@
       if (Object.prototype.hasOwnProperty.call(installedChunks, chunkId) && installedChunks[chunkId]) {
         resolves.push(installedChunks[chunkId][0]);
       }
-      installedChunks[chunkId] = 0;
+      installedChunks[chunkId] = 0; // 加载完了将其设置为0
     }
     for (moduleId in moreModules) {
       if (Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-        modules[moduleId] = moreModules[moduleId];
+        modules[moduleId] = moreModules[moduleId]; // 将赖加载中的内容合并到 modules 中去
       }
     }
     if (parentJsonpFunction) parentJsonpFunction(data);
 
     while (resolves.length) {
-      resolves.shift()();
+      resolves.shift()(); // 取出 promise 的回调执行
     }
 
   };
@@ -182,9 +182,25 @@
   // on error function for async loading
   __webpack_require__.oe = function (err) { console.error(err); throw err; };
 
+  /*
+    赖加载流程
+
+    1, 重写 push 方法，为jsopcallback 的回调作准备
+
+    2， e 方法为赖加载内容，包装 promise 状态，生成 script 去拉取赖加载文件
+
+    3， 拉取赖加载文件时，调用了 1重写的push方法，该方法接收到了赖加载中的内容
+
+    4， 将赖加载中的内容合并到 modules 中，然后改变 promise 的状态，调用e方法的then 回调
+
+    5, t 方法去拉取内容，将内容 return
+
+  
+  */ 
+
   var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
   var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
-  jsonpArray.push = webpackJsonpCallback;
+  jsonpArray.push = webpackJsonpCallback; // 重写 push 方法，当加载了 login.built.js 时，login.built.js 调用了 push 方法，实际上调用了 webpackJsonpCallback
   jsonpArray = jsonpArray.slice();
   for (var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
   var parentJsonpFunction = oldJsonpFunction;
