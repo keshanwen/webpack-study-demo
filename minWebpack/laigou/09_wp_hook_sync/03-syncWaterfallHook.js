@@ -5,6 +5,7 @@ let hook = new SyncWaterfallHook(['name', 'age'])
 hook.tap('fn1', function (name, age) {
   console.log('fn1--->', name, age)
   return 'ret1'
+  // return undefined
 })
 
 hook.tap('fn2', function (name, age) {

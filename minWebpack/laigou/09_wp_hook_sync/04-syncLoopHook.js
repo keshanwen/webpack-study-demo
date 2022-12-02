@@ -8,11 +8,18 @@ let count3 = 0
 
 hook.tap('fn1', function (name, age) {
   console.log('fn1--->', name, age)
-  if (++count1 === 1) {
-    count1 = 0
+//   if (++count1 === 1) {
+//     count1 = 0
+//     console.log(111111)
+//     return undefined
+//   }
+//  return true
+  if (count1 === 0) {
+    count1++
+    return true
+  } else {
     return undefined
   }
-  return true
 })
 
 hook.tap('fn2', function (name, age) {
@@ -29,3 +36,4 @@ hook.tap('fn3', function (name, age) {
 })
 
 hook.call('foo', 100)
+
