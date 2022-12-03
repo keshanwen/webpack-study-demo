@@ -1,4 +1,6 @@
-const SyncHook = require('./SyncHook.js')
+// const SyncHook = require('./SyncHook.js')
+const SyncHook = require('./mySyncHook')
+
 
 let hook = new SyncHook(['name', 'age'])
 
