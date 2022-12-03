@@ -1,5 +1,7 @@
 const AsyncParallelHook = require('./AsyncParallelHook.js')
+// const AsyncParallelHook = require('./myAsyncParallelHook.js')
 // const { AsyncParallelHook } = require('tapable')
+
 
 let hook = new AsyncParallelHook(['name', 'age'])
 
