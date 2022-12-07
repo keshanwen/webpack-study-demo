@@ -9,7 +9,7 @@ class SingleEntryPlugin {
   apply(compiler) {
     compiler.hooks.make.tapAsync('SingleEntryPlugin', (compilation, callback) => {
       const { context, entry, name } = this
-      console.log("make 钩子监听执行了~~~~~~")
+      console.log("make 钩子监听执行了~~~~~~!!!!")
       // compilation.addEntry(context, entry, name, callback)
     })
   }
