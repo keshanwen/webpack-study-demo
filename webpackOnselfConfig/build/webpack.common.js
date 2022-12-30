@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar') // 打包进度条插件
 const envConfig = require('./webpack.env.config.js'); // 自定义常量
+const { getHtmlTiltle } = require('./util.js')
 
 const baseConfig = {
   entry: {
@@ -17,7 +18,7 @@ const baseConfig = {
   
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Production',
+      title: getHtmlTiltle(),
     }),
     new WebpackBar(),
     // 将自定义常量注入到业务代码中
