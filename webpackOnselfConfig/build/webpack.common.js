@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar') // 打包进度条插件
 
+const isProduction = process.env.NODE_ENV !== 'development' // 是否是生产环境
+
+
 module.exports = {
   entry: {
     app: path.join(__dirname,'../src/index.js'),
