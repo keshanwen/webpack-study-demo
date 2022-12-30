@@ -22,8 +22,7 @@ const baseConfig = {
     new WebpackBar(),
     // 将自定义常量注入到业务代码中
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify({
-        PUBLIC_PATH: JSON.stringify(process.env.PUBLIC_PATH ? process.env.PUBLIC_PATH : 'i am development'),
+      'CUSTOMCONSTANTS': JSON.stringify({
         ...envConfig
       })
     }),
