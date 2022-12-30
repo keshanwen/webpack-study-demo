@@ -1,23 +1,37 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar') // 打包进度条插件
+const envConfig = require('./webpack.env.config.js'); // 自定义常量
 
-const isProduction = process.env.NODE_ENV !== 'development' // 是否是生产环境
-
-
-module.exports = {
+const baseConfig = {
   entry: {
     app: path.join(__dirname,'../src/index.js'),
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Production',
-    }),
-    new WebpackBar() 
-  ],
+
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
   },
+  
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Production',
+    }),
+    new WebpackBar(),
+    // 将自定义常量注入到业务代码中
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify({
+        PUBLIC_PATH: JSON.stringify(process.env.PUBLIC_PATH ? process.env.PUBLIC_PATH : 'i am development'),
+        ...envConfig
+      })
+    }),
+  ],
+
+}
+
+
+module.exports = {
+  baseConfig
 };
