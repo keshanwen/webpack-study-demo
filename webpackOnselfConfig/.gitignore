@@ -1,0 +1,18 @@
+/mtk/              
+/node_modules/
+/dist/
+#过滤整个mtk文件夹
+*.zip               
+#过滤所有.zip文件
+/mtk/do.c        
+#过滤/mtk/do.c文件
+
+fd1/*　　　   
+#忽略目录 fd1 下的全部内容
+
+/fd1/*　　　　
+#忽略根目录下的 /fd1/ 目录的全部内容；
+
+!/fw/bin/
+!/fw/sf/             
+#不忽略 根目录下的 /fw/bin/ 和 /fw/sf/ 目录；
