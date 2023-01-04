@@ -11,8 +11,9 @@ const baseConfig = {
   },
 
   output: {
-    filename: '[name].bundle.js',
+    filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
+    publicPath: '',
     clean: true,
   },
 
@@ -29,6 +30,7 @@ const baseConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       title: getHtmlTiltle(),
+      template: path.join(__dirname,'../public/index.html')
     }),
     new WebpackBar(),
     // 将自定义常量注入到业务代码中
