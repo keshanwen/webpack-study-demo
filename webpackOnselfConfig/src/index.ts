@@ -1,5 +1,6 @@
 
-console.log('index.js~~~~~~~~~~~~~~~~~`')
+console.log('index.ts~~~~~~~~~~~~~~~~~`')
+
 
 console.log(CUSTOMCONSTANTS,'CUSTOMCONSTANTS~~~~~~~~~~~~~')
 

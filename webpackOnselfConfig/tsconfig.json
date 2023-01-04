@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "target": "ES2016",
+      "useDefineForClassFields": true,
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "strict": true,
+      "importHelpers": false,
+      "allowJs": true,
+      "jsx": "preserve",
+      "sourceMap": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "isolatedModules": false,
+      "noImplicitAny": false,
+      "types": [],
+      "baseUrl": "./",
+      "paths": {
+        "@/*": ["./src/*"]
+      },
+      "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
+      "outDir": "dist"
+    },
+    "include": ["src/**/*.js", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","./**/*.ts"],
+    "exclude": [
+      "node_modules",
+      "dist"
+    ]
+  }
+  

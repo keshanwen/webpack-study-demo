@@ -7,7 +7,7 @@ const { getHtmlTiltle } = require('./util.js')
 
 const baseConfig = {
   entry: {
-    app: path.join(__dirname,'../src/index.js'),
+    app: path.join(__dirname,'../src/index.ts'),
   },
 
   output: {
@@ -15,7 +15,17 @@ const baseConfig = {
     path: path.resolve(__dirname, '../dist'),
     clean: true,
   },
-  
+
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: "ts-loader",
+      },
+    ],
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       title: getHtmlTiltle(),
