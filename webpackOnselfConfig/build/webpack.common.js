@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar') // 打包进度条插件
 const envConfig = require('./webpack.env.config.js'); // 自定义常量
 const { getHtmlTiltle } = require('./util.js')
+const { isProduction } = require('./util.js')
 
 const baseConfig = {
   entry: {
@@ -24,6 +26,13 @@ const baseConfig = {
         exclude: /node_modules/,
         use: "ts-loader",
       },
+      {
+        test: /\.css/,
+        use: [
+          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader'
+        ]
+      }
     ],
   },
 
