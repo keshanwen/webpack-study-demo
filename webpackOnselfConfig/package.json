@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.js",
-    "dev": "npm run start"
+    "dev": "npm run start",
+    "analyze": "webpack-bundle-analyzer --port 1234 ./dist/stats.json"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,7 @@
     "style-loader": "^3.3.1",
     "vue-loader": "^17.0.1",
     "webpack": "^5.75.0",
+    "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"

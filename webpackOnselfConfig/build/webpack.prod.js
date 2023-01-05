@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { baseConfig } = require('./webpack.common.js');
 
 module.exports = merge(baseConfig, {
@@ -14,6 +15,10 @@ module.exports = merge(baseConfig, {
     new CopyWebpackPlugin({
       // from后的路径是相对于项目的根目录，to后的路径是相对于打包后的dist目录
       patterns: [{ from: "./public/lodash.min.js", to: "./public/lodash.min.js" }],
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "disabled",
+      generateStatsFile: true,
     }),
   ]
 });
