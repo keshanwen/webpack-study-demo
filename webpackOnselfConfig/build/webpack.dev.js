@@ -1,5 +1,6 @@
 const { merge } = require('webpack-merge');
 const { baseConfig } = require('./webpack.common.js');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 
 module.exports = merge(baseConfig, {
@@ -29,5 +30,10 @@ module.exports = merge(baseConfig, {
     },
   },
   
-  plugins: []
+  plugins: [
+    new CopyWebpackPlugin({
+      // from后的路径是相对于项目的根目录，to后的路径是相对于打包后的dist目录
+      patterns: [{ from: "./public/lodash.min.js", to: "./public/lodash.min.js" }],
+    }),
+  ]
 });
