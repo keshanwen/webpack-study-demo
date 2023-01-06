@@ -1,17 +1,14 @@
 <template>
   <div>
-    <h1 class="app-home">{{ num }}</h1>
+    i am test.vue
+    <h1 class="text-page">test.vue{{ num }}</h1>
     <button @click="add">增加</button>
-    <div>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div>
-    <TextPage/>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import TextPage from '@/components/textPage.vue'
 
-let name = ref<string>('kebi')
 let num = ref(0)
 
 const add = () => {
@@ -21,7 +18,7 @@ const add = () => {
 </script>
 
 <style lang="scss" scoped>
-.app-home {
+.text-page {
   color: darkorange;
 }
 </style>
