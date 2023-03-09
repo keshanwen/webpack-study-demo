@@ -1,3 +1,5 @@
+import _ from 'loadsh'
+
 function component() {
   const element = document.createElement('div');
 

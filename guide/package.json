@@ -12,5 +12,8 @@
   "devDependencies": {
     "webpack": "^5.76.0",
     "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "loadsh": "^0.0.4"
   }
 }
