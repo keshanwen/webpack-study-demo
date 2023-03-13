@@ -8,7 +8,19 @@
  */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({});
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/text.js":
+/*!*********************!*\
+  !*** ./src/text.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var loadsh__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! loadsh */ \"./node_modules/loadsh/lodash.js\");\n/* harmony import */ var loadsh__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(loadsh__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\n\r\nconsole.log(loadsh__WEBPACK_IMPORTED_MODULE_0___default().join(['hello wrold', 'test'], ' '));\n\n//# sourceURL=webpack://guide/./src/text.js?");
+
+/***/ })
+
+/******/ 	});
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -142,7 +154,7 @@
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"runtime": 0
+/******/ 			"text": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -189,6 +201,11 @@
 /******/ 	
 /************************************************************************/
 /******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_loadsh_lodash_js"], () => (__webpack_require__("./src/text.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
