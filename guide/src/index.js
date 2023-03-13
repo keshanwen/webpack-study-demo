@@ -1,4 +1,5 @@
 import _ from 'loadsh'
+import './text'
 
 
 function component() {
