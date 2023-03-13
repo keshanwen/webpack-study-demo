@@ -1,15 +1,23 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
 
  module.exports = {
-  mode: 'development',
-  entry: {
-    index: './src/index.js',
-    another: './src/another-module.js',
-  },
+   mode: 'development',
+   entry: {
+     index: {
+       import: './src/index.js',
+       dependOn: 'shared',
+     },
+     another: {
+       import: './src/another-module.js',
+       dependOn: 'shared',
+     },
+     shared: 'lodash',
+   },
    output: {
-    filename: 'main.js',
-    filename: '[name].bundle.js',
+     filename: '[name].bundle.js',
      path: path.resolve(__dirname, 'dist'),
    },
+  optimization: {
+    runtimeChunk: 'single',
+  },
  };
