@@ -1,0 +1,71 @@
+1.6.1 环境差异
+    开发环境
+        需要生成 sourcemap 文件
+        需要打印 debug 信息
+        需要 live reload 或者 hot reload 的功能
+    生产环境
+        可能需要分离 CSS 成单独的文件，以便多个页面共享同一个 CSS 文件
+        需要压缩 HTML/CSS/JS 代码
+        需要压缩图片
+    其默认值为 production
+
+1.6.2 区分环境 
+    --mode用来设置模块内的process.env.NODE_ENV
+    cross-env用来设置node环境的process.env.NODE_ENV
+    DefinePlugin用来设置模块内的全局变量
+
+
+1.6.2.1 命令行配置
+    webpack的mode默认为production
+    webpack serve的mode默认为development
+    可以在模块内通过process.env.NODE_ENV获取当前的环境变量,无法在webpack配置文件中获取此变量
+
+    "scripts": {
+        "build": "webpack",
+        "dev": "webpack serve"
+    },
+
+    index.js
+
+        console.log(process.env.NODE_ENV);// development | production
+    webpack.config.js
+
+        console.log('NODE_ENV',process.env.NODE_ENV);// undefined
+
+1.6.2.2 命令行配置
+    "scripts": {
+        "build": "webpack --mode=production",
+        "dev": "webpack --mode=development serve"
+    },
+
+1.6.2.3 mode配置
+    module.exports = {
+    mode: 'development'
+    }
+
+1.6.2.4 DefinePlugin
+    可以在任意模块内通过 process.env.NODE_ENV 获取当前的环境变量
+    但无法在node环境(webpack 配置文件中)下获取当前的环境变量
+    plugins:[
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV':JSON.stringify(process.env.NODE_ENV)
+    })
+    ]   
+    index.js
+
+    console.log(NODE_ENV);//  production
+    webpack.config.js
+
+    console.log('process.env.NODE_ENV',process.env.NODE_ENV);// undefined
+    console.log('NODE_ENV',NODE_ENV);// error ！！！
+
+1.6.2.5 cross-env
+    只能设置node环境下的变量NODE_ENV
+    package.json
+
+    "scripts": {
+    "build": "cross-env NODE_ENV=development webpack"
+    }
+    webpack.config.js
+
+    console.log('process.env.NODE_ENV',process.env.NODE_ENV);// development        
