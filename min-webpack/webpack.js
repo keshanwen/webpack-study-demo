@@ -78,6 +78,13 @@ class Compilation {
   }
 
   build(callback) {
+    // 第五步： 根据配置文件中的 entry 配置项找到所有的入口
+    let entry = {}
+    if (typeof this.options.entry === 'string') {
+      entry.main = this.options.entry
+    } else {
+      entry = this.options.entry
+    }
     // 这里开始做编译工作， 编译成功执行callback
     callback()
   }
