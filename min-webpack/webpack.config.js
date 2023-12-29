@@ -1,4 +1,5 @@
 const path = require("path");
+const { WebpackRunPlugin, WebpackDonePlugin } = require("./webpack");
 
 module.exports = {
   mode: "development", //防止代码被压缩
@@ -12,4 +13,5 @@ module.exports = {
   resolve: {
     extensions: ["", ".js", ".jsx"],
   },
+  plugins: [new WebpackRunPlugin(), new WebpackDonePlugin()]
 };
