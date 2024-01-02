@@ -206,6 +206,16 @@ class Compilation {
 
       // 6. 3 将生成的入口文件 module 对象 push 进 this.modules 中
       this.modules.push(entryModule)
+
+
+      //第八步：等所有模块都编译完成后，根据模块之间的依赖关系，组装代码块 `chunk`（一般来说，每个入口文件会对应一个代码块`chunk`，每个代码块`chunk`里面会放着本入口模块和它依赖的模块）
+      let chunk = {
+        name: entryName, //entryName="main" 代码块的名称
+        entryModule, //此代码块对应的module的对象,这里就是src/index.js 的module对象
+        modules: this.modules.filter((item) => item.names.includes(entryName)), //找出属于该代码块的模块
+      };
+      this.chunks.push(chunk);
+
     }
 
     // 这里开始做编译工作， 编译成功执行callback
