@@ -101,7 +101,16 @@ class Compiler {
   // 第四步： 执行 Complier 对象的run方法开始执行编译
   run(callback) {
     this.hooks.run.call() // 在编译前触发 run 钩子执行，表示开始启动编译了
-    const onCompiled = () => {
+    const onCompiled = (err, stats, fileDependencies) => {
+      //第十步：确定好输出内容之后，根据配置的输出路径和文件名，将文件内容写入到文件系统（这里就是硬盘）
+      for (let filename in stats.assets) {
+        let filePath = path.join(this.options.output.path, filename);
+        fs.writeFileSync(filePath, stats.assets[filename], "utf8");
+      }
+      callback(err, {
+        toJson: () => stats,
+      });
+
       this.hooks.done.call() // 当编译成功后触发 done 这个钩子执行
     }
     this.complie(onCompiled) // 开始编译，成功之后调用 onCompiled
