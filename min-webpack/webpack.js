@@ -18,7 +18,39 @@ const generator = require("@babel/generator").default;
      }
    }
    throw new Error(`无法找到${modulePath}`);
+}
+
+//生成运行时代码
+ function getSource(chunk) {
+   return `
+    (() => {
+     var modules = {
+       ${chunk.modules.map(
+         (module) => `
+         "${module.id}": (module) => {
+           ${module._source}
+         }
+       `
+       )}
+     };
+     var cache = {};
+     function require(moduleId) {
+       var cachedModule = cache[moduleId];
+       if (cachedModule !== undefined) {
+         return cachedModule.exports;
+       }
+       var module = (cache[moduleId] = {
+         exports: {},
+       });
+       modules[moduleId](module, module.exports, require);
+       return module.exports;
+     }
+     var exports ={};
+     ${chunk.entryModule._source}
+   })();
+    `;
  }
+
 
 // Webpack Plugin 其实就是一个普通的函数， 在改函数中需要我们定制一个 apply 方法
 class WebpackRunPlugin {
@@ -218,8 +250,23 @@ class Compilation {
 
     }
 
+    //第九步：把各个代码块 `chunk` 转换成一个一个文件加入到输出列表
+    this.chunks.forEach((chunk) => {
+      let filename = this.options.output.filename.replace("[name]", chunk.name);
+      this.assets[filename] = getSource(chunk);
+    });
+
+
     // 这里开始做编译工作， 编译成功执行callback
-    callback()
+    callback(
+      null,
+      {
+        chunks: this.chunks,
+        modules: this.modules,
+        assets: this.assets,
+      },
+      this.fileDependencies
+    );
   }
 }
 
