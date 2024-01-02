@@ -16,6 +16,7 @@
            const name = require("./src/name.js");
 const age = require("./src/age.js");
 console.log("entry文件打印作者信息", name, age);
+console.log('hello wrold i am kebi');
 //给你的代码加点注释：loader2//给你的代码加点注释：loader1
          }
        
@@ -36,6 +37,7 @@ console.log("entry文件打印作者信息", name, age);
      const name = require("./src/name.js");
 const age = require("./src/age.js");
 console.log("entry文件打印作者信息", name, age);
+console.log('hello wrold i am kebi');
 //给你的代码加点注释：loader2//给你的代码加点注释：loader1
    })();
     
