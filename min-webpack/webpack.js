@@ -271,6 +271,10 @@ class Compilation {
       this.assets[filename] = getSource(chunk);
     });
 
+    console.dir(this, {
+      depth: 20
+    })
+
 
     // 这里开始做编译工作， 编译成功执行callback
     callback(
