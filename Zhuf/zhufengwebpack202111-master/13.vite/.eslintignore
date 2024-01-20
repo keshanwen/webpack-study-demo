@@ -1,0 +1,10 @@
+*.css
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.d.ts
+*.md
+doc
+*.html
+commitlint.config.js
