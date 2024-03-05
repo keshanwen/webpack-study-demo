@@ -2,9 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack  = require('webpack')
 
-// console.log(process.env.NODE_ENV, '配置文件中~~~~~~~~~~~~~~')
-console.log('process.env.NODE_ENV  配置文件中~~~~~~~~~~~~~~',process.env.NODE_ENV);// undefined
-// clear
 
 module.exports = {
  // mode: 'development',
@@ -34,5 +31,13 @@ module.exports = {
    new webpack.DefinePlugin({
       'process.env.NODE_ENV':JSON.stringify(process.env.NODE_ENV)
    })
-  ]
+  ],
+
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    compress: true,
+    port: 9000,
+  },
 }
