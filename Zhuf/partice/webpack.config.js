@@ -1,10 +1,10 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack  = require('webpack')
+const webpack = require('webpack')
 
 
 module.exports = {
- // mode: 'development',
+  // mode: 'development',
 
   entry: './src/index.js',
 
@@ -21,28 +21,49 @@ module.exports = {
       }, {
         test: /\.less$/,
         use: [
-          'style-loader', 'css-loader', 'postcss-loader','less-loader'
+          'style-loader', 'css-loader', 'postcss-loader', 'less-loader'
         ]
+      },
+      {
+        test: /\.png$/,
+        type: 'asset/resource'
+      },
+      {
+        test: /\.ico$/,
+        type: 'asset/inline'
+      },
+      {
+        test: /\.txt$/,
+        type: 'asset/source'
+      },
+      {
+        test: /\.jpg$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024 // 4kb
+          }
+        }
       }
-    ]
+
+    ],
   },
 
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './src/index.html'
+      }),
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      })
+    ],
 
-   new webpack.DefinePlugin({
-      'process.env.NODE_ENV':JSON.stringify(process.env.NODE_ENV)
-   })
-  ],
-
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    compress: true,
-    port: 9000,
-  },
-}
+    devServer: {
+      static: {
+        directory: path.join(__dirname, 'public'),
+      },
+      compress: true,
+      port: 9000,
+    }
+  }
