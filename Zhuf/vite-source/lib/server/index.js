@@ -1,6 +1,9 @@
 const connect = require("connect");
+const serveStaticMiddleware = require('./middlewares/static')
+const resolveConfig = require('../config')
 
 async function createServer() {
+  const config = await resolveConfig()
   const middlewares = connect();
   const server = {
     async listen(port) {
@@ -11,6 +14,7 @@ async function createServer() {
         });
     },
   };
+  middlewares.use(serveStaticMiddleware(config))
   return server;
 }
 exports.createServer = createServer;
