@@ -1,0 +1,28 @@
+{
+  "name": "Babel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
+    "@babel/plugin-proposal-do-expressions": "^7.23.3",
+    "@babel/plugin-transform-arrow-functions": "^7.23.3",
+    "@babel/plugin-transform-block-scoping": "^7.23.4",
+    "@babel/plugin-transform-destructuring": "^7.23.3",
+    "@babel/plugin-transform-parameters": "^7.23.3",
+    "@babel/plugin-transform-shorthand-properties": "^7.23.3",
+    "@babel/plugin-transform-template-literals": "^7.23.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.24.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
+  }
+}
