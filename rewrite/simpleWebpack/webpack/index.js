@@ -1,6 +1,7 @@
 const NodeEnvironmentPlugin = require("./plugins/NodeEnvironmentPlugin");
 const Compiler = require("./Compiler");
 const path = require('path')
+const WebpackOptionsApply = require("./WebpackOptionsApply");
 
 function webpack(options) {
     options.context = options.context || path.resolve(process.cwd())
@@ -16,6 +17,8 @@ function webpack(options) {
             plugin.apply(compiler)
         }
     }
+    
+    new WebpackOptionsApply().process(options, compiler) // 处理参数
 
     return compiler
 }

@@ -1,4 +1,4 @@
-const { Tapable } = require("tapable");
+const { Tapable, SyncBailHook, AsyncParallelHook } = require("tapable");
 
 /*
     代表整个编译对象，负责整个编译的过程，里面会保存所有的编译信息
@@ -8,7 +8,10 @@ class Compiler {
     constructor(context) {
         this.options = {};
         this.context = context; //设置上下文路径
-        this.hooks = {};
+        this.hooks = {
+            entryOption: new SyncBailHook(["context", "entry"]),
+            make: new AsyncParallelHook(["compilation"])
+        };
     }
     run(callback) {
         console.log("Compiler run");
