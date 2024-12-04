@@ -12,7 +12,7 @@
     "babel-register": "^6.24.1",
     "bcrypt": "^2.0.1",
     "cross-env": "^5.0.1",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.1",
     "koa-compose": "^4.0.0",
