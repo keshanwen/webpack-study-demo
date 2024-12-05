@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "babylon": "^6.18.0",
+    "neo-async": "^2.6.2",
     "tapable": "^2.2.1",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4"
