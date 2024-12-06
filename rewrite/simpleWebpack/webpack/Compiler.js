@@ -26,6 +26,7 @@ class Compiler {
       make: new AsyncParallelHook(["compilation"]),
       thisCompilation: new SyncHook(["compilation", "params"]),
       compilation: new SyncHook(["compilation", "params"]),
+      afterCompile:new AsyncSeriesHook(["compilation"]),
       done: new AsyncSeriesHook(["stats"]),
     };
   }
@@ -50,8 +51,11 @@ class Compiler {
       this.hooks.compile.call(params);
       const compilation = this.newCompilation(params);
       this.hooks.make.callAsync(compilation, (err) => {
-        console.log("make完成");
-        onCompiled(err, compilation);
+        compilation.seal( err => {
+          this.hooks.afterCompile.callAsync(compilation, err => {
+                return onCompiled(null, compilation);
+            });
+        })
       });
     });
   }

@@ -4,6 +4,7 @@ const async = require('neo-async');
 const Parser = require('./Parser');
 const parser = new Parser();
 const path = require('path');
+let Chunk = require('./Chunk');
 
 class Compilation {
     constructor(compiler) {
@@ -14,9 +15,26 @@ class Compilation {
         this.outputFileSystem = compiler.outputFileSystem;
         this.entries = [];
         this.modules = [];
+        this.chunks = [];
         this.hooks = {
-            succeedModule: new SyncHook(["module"])
+            succeedModule: new SyncHook(["module"]),
+            seal: new SyncHook([]),
+            beforeChunks: new SyncHook([]),
+            afterChunks: new SyncHook(["chunks"])
         }
+    }
+    seal(callback) {
+        this.hooks.seal.call()
+        this.hooks.beforeChunks.call(); // 生成代码块之前
+        for (const module of this.entries) { // 循环入口模块
+            const chunk = new Chunk(module) // 创建代码块
+            this.chunks.push(chunk) // 把代码块添加到代码块数组中
+            // 把代码块的模块添加到代码块中
+            chunk.modules = this.modules.filter(module => module.name == chunk.name);
+        }
+    
+        this.hooks.afterChunks.call(this.chunks);//生成代码块之后
+        callback();//封装结束
     }
     //context ./src/index.js main callback(终级回调)
     addEntry(context, entry, name, callback) {
