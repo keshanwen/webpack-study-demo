@@ -7,12 +7,14 @@ const compiler = webpack(webpackOptions)
 
 compiler.run( (err, stats) => {
     console.log(err, 'err')
-   console.log(
-    stats.toJson({
+
+    const json =  stats.toJson({
         entries: true,
         chunks: true,
         modules: true,
         assets: true
     })
-   )
+   console.log(json)
+
+   console.log(json.entries[0].dependencies)
 })
