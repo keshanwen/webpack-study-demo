@@ -15,6 +15,4 @@ compiler.run( (err, stats) => {
         assets: true
     })
    console.log(json)
-
-   console.log(json.entries[0].dependencies)
 })

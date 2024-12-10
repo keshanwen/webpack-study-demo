@@ -8,6 +8,8 @@ const {
 const Compilation = require("./Compilation");
 const NormalModuleFactory = require("./NormalModuleFactory");
 const Stats = require("./Stats");
+const { mkdirp } = require("mkdirp");
+const path = require("path");
 
 /*
     代表整个编译对象，负责整个编译的过程，里面会保存所有的编译信息
@@ -26,15 +28,39 @@ class Compiler {
       make: new AsyncParallelHook(["compilation"]),
       thisCompilation: new SyncHook(["compilation", "params"]),
       compilation: new SyncHook(["compilation", "params"]),
-      afterCompile:new AsyncSeriesHook(["compilation"]),
+      afterCompile: new AsyncSeriesHook(["compilation"]),
+      emit: new AsyncSeriesHook(["compilation"]),
       done: new AsyncSeriesHook(["stats"]),
     };
+  }
+  emitAssets(compilation, callback) {
+    const emitFiles = (err) => {
+      const assets = compilation.assets;
+      let outputPath = this.options.output.path; //dist
+      for (let file in assets) {
+        let source = assets[file]; //得到文件名和文件内容
+        let targetPath = path.posix.join(outputPath, file); //得到输出的路径 targetPath
+        this.outputFileSystem.writeFileSync(targetPath, source, "utf8"); //NodeEnvironmentPlugin
+      }
+      callback();
+    };
+    this.hooks.emit.callAsync(compilation, (err) => {
+      mkdirp(this.options.output.path).then(() => {
+        emitFiles(err);
+      });
+      // mkdirp(this.options.output.path, emitFiles);
+    });
   }
   run(finalCallback) {
     //编译完成后的回调
     const onCompiled = (err, compilation) => {
-      console.log("onCompiled");
-      finalCallback(err, new Stats(compilation));
+      this.emitAssets(compilation, (err) => {
+        let stats = new Stats(compilation); //stats是一 个用来描述打包后结果的对象
+        this.hooks.done.callAsync(stats, (err) => {
+          //done表示整个流程结束了
+          finalCallback(err, stats);
+        });
+      });
     };
     //准备运行编译
     this.hooks.beforeRun.callAsync(this, (err) => {
@@ -51,11 +77,11 @@ class Compiler {
       this.hooks.compile.call(params);
       const compilation = this.newCompilation(params);
       this.hooks.make.callAsync(compilation, (err) => {
-        compilation.seal( err => {
-          this.hooks.afterCompile.callAsync(compilation, err => {
-                return onCompiled(null, compilation);
-            });
-        })
+        compilation.seal((err) => {
+          this.hooks.afterCompile.callAsync(compilation, (err) => {
+            return onCompiled(null, compilation);
+          });
+        });
       });
     });
   }
