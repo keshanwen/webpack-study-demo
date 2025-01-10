@@ -33,6 +33,27 @@ module.exports = {
         test: /\.less$/,
         use: ["style-loader", "css-loader", "less-loader"],
       },
+      {
+        test: /\.png$/,
+        type: "asset/resource",
+      },
+      {
+        test: /\.ico$/,
+        type: "asset/inline",
+      },
+      {
+        test: /\.txt$/,
+        type: "asset/source",
+      },
+      {
+        test: /\.jpg$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4kb
+          },
+        },
+      },
     ],
   },
 
