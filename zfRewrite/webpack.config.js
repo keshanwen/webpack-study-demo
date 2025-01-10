@@ -23,6 +23,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
+    // publicPath: "https://www.baidu.com/", //表示的是打包生成的index.html文件里面引用资源的前缀
   },
 
   module: {
@@ -35,4 +36,10 @@ module.exports = {
     //   "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     // }),
   ],
+
+  devServer: {
+    static: path.resolve(__dirname, "public"),
+    port: 8080,
+    open: true,
+  },
 };
