@@ -1,2 +1,3 @@
-let title = require("./title.js");
-console.log(title);
+import name, { age } from "./title";
+console.log(name);
+console.log(age);
