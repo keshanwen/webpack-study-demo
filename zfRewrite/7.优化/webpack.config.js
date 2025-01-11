@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const bootstrap = path.resolve(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css')
 const webpack = require("webpack");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const smp = new SpeedMeasurePlugin();
 
@@ -62,6 +63,7 @@ const webpackConfig = {
       contextRegExp: /moment$/,
       resourceRegExp: /^\.\/locale/,
     }),
+    new BundleAnalyzerPlugin(),
   ],
 
   resolve: {
@@ -81,6 +83,6 @@ const webpackConfig = {
   },
 };
 
-smp.wrap(webpackConfig);
+// smp.wrap(webpackConfig);
 
 module.exports = webpackConfig;

@@ -16,3 +16,6 @@
 
 4.费时分析 
     speed-measure-webpack-plugin
+
+ 5.webpack-bundle-analyzer
+    是一个webpack的插件，需要配合webpack和webpack-cli一起使用。这个插件的功能是生成代码分析报告，帮助提升代码质量和网站性能   
