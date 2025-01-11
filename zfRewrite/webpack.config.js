@@ -14,6 +14,13 @@ module.exports = {
   },
 
   module: {
+    noParse: /jquery|lodash/, // 正则表达式
+    // 或者使用函数
+    /*
+    noParse(content) {
+        return /jquery|lodash/.test(content);
+      },
+    */
     rules: [
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       {

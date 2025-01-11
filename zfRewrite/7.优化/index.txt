@@ -1,0 +1,13 @@
+1, 缩小范围
+    resolve: {
+        extensions: [".js", ".jsx", ".json", ".css"],
+        alias: {
+            "@": path.resolve(__dirname, "src"),
+        },
+        modules: [path.resolve(__dirname, "node_modules")],
+    },
+
+2, module.noParse 字段，可以用于配置哪些模块文件的内容不需要进行解析
+
+    不需要解析依赖（即无依赖） 的第三方大型类库等，可以通过这个字段来配置，以提高整体的构建速度
+    使用 noParse 进行忽略的模块文件中不能使用 import、require、define 等导入机制
