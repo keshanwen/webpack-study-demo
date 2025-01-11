@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const bootstrap = path.resolve(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css')
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -51,7 +52,14 @@ module.exports = {
     ],
   },
 
-  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: "./src/index.html" }),
+    new webpack.IgnorePlugin({
+      //A RegExp to test the context (directory) against.
+      contextRegExp: /moment$/,
+      resourceRegExp: /^\.\/locale/,
+    }),
+  ],
 
   resolve: {
     extensions: [".js", ".jsx", ".json", ".css"],

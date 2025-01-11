@@ -21,6 +21,7 @@
     "less": "^4.2.1",
     "less-loader": "^12.2.0",
     "loader-runner": "^4.3.0",
+    "moment": "^2.30.1",
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^10.1.3",
     "style-loader": "^4.0.0",
