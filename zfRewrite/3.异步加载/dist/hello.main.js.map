@@ -1,0 +1,1 @@
+{"version":3,"file":"hello.main.js","mappings":";;;;;;;;;;;;;AAAA,iEAAe,OAAO,EAAC","sources":["webpack://zfrewrite/./src/hello.js"],"sourcesContent":["export default \"hello\";\r\n"],"names":[],"sourceRoot":""}
