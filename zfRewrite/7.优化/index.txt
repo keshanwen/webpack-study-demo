@@ -19,3 +19,7 @@
 
  5.webpack-bundle-analyzer
     是一个webpack的插件，需要配合webpack和webpack-cli一起使用。这个插件的功能是生成代码分析报告，帮助提升代码质量和网站性能   
+
+ 6. 提取 css 
+    因为CSS的下载和JS可以并行,当一个HTML文件很大的时候，我们可以把CSS单独提取出来加载s   
+    mini-css-extract-plugin

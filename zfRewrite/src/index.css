@@ -1,0 +1,10 @@
+body {
+  background-color: green;
+}
+
+#root {
+  background-color: red;
+  width: 100px;
+  height: 10px;
+  transform: rotate(10deg);
+}
