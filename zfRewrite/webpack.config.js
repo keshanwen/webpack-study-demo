@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const bootstrap = path.resolve(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css')
 
 module.exports = {
   mode: "development",
@@ -49,6 +50,7 @@ module.exports = {
     extensions: [".js", ".jsx", ".json", ".css"],
     alias: {
       "@": path.resolve(__dirname, "src"),
+      // bootstrap
     },
   },
 
