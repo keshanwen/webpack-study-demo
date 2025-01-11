@@ -2,8 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const bootstrap = path.resolve(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css')
 const webpack = require("webpack");
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 
-module.exports = {
+const smp = new SpeedMeasurePlugin();
+
+const webpackConfig = {
   mode: "development",
 
   entry: "./src/index.js",
@@ -77,3 +80,7 @@ module.exports = {
     open: true,
   },
 };
+
+smp.wrap(webpackConfig);
+
+module.exports = webpackConfig;

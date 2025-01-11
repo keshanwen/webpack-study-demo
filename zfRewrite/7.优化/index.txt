@@ -14,3 +14,5 @@
 
 3, IgnorePlugin用于忽略某些特定的模块，让 webpack 不把这些指定的模块打包进去
 
+4.费时分析 
+    speed-measure-webpack-plugin
