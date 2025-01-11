@@ -24,3 +24,9 @@
     因为CSS的下载和JS可以并行,当一个HTML文件很大的时候，我们可以把CSS单独提取出来加载s   
     mini-css-extract-plugin
     指定 css 目录  filename: "css/[name].css",
+
+7.压缩JS、CSS和HTML
+    optimize-css-assets-webpack-plugin是一个优化和压缩CSS资源的插件
+    terser-webpack-plugin是一个优化和压缩JS资源的插件 
+    
+       
