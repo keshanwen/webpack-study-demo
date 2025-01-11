@@ -23,3 +23,4 @@
  6. 提取 css 
     因为CSS的下载和JS可以并行,当一个HTML文件很大的时候，我们可以把CSS单独提取出来加载s   
     mini-css-extract-plugin
+    指定 css 目录  filename: "css/[name].css",
