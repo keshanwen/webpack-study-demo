@@ -47,6 +47,9 @@ module.exports = {
 
   resolve: {
     extensions: [".js", ".jsx", ".json", ".css"],
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
   },
 
   devServer: {

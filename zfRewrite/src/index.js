@@ -1,3 +1,3 @@
-import { name } from "./title";
+import { name } from "@/title";
 
 console.log(name);
