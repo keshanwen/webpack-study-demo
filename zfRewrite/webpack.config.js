@@ -52,6 +52,8 @@ module.exports = {
       "@": path.resolve(__dirname, "src"),
       // bootstrap
     },
+    modules: [path.resolve(__dirname, "node_modules")], // 如果可以确定项目内所有的第三方依赖模块都是在项目根目录下的 node_modules 中的话
+    // 对于直接声明依赖名的模块（如 react ），webpack 会类似 Node.js 一样进行路径搜索，搜索node_modules目录。会不断的往上找，直到找到 node_modules
   },
 
   devServer: {
