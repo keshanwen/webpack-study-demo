@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^9.3.1",
-    "css-loader": "^1.0.1",
+    "css-loader": "^6.7.3",
     "file-loader": "^2.0.0",
     "node-sass": "^4.10.0",
     "postcss-loader": "^3.0.0",
